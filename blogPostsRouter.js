@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   for (let i = 0; i <  requiredFields.length ; i++){
     const field = requiredFields[i];
     if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
+      const message = `Missing ${field} in request body`;
       console.error(message);
       return res.status(400).send(message);
     }
@@ -39,17 +39,17 @@ router.put('/:id', (req, res) => {
   for (let i = 0; i < requiredFields.length; i++){
     const field = requiredFields[i];
     if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
+      const message = `Missing ${field} in request body`;
       console.error(message);
       return res.status(400).send(message);
     }
   }
   if (req.params.id !== req.body.id) {
-    const message = `Request path id (${req.params.id}) and request body id ``(${req.body.id}) must match`;
+    const message = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
     console.error(message);
     return res.status(400).send(message);
   }
-  console.log(`Updating blog post with id \`${req.params.id}\``);
+  console.log(`Updating blog post with id ${req.params.id}`);
   BlogPosts.update({
     id: req.params.id,
     title: req.body.title,
@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   BlogPosts.delete(req.params.id);
-  console.log(`Deleted blog post with id \`${req.params.ID}\``);
+  console.log(`Deleted blog post with id ${req.params.ID}`);
   res.status(204).end();
 });
 
